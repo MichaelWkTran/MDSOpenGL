@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Resource Files\Shaders">
+      <UniqueIdentifier>{095fd488-fde0-4427-ba62-94b87c887867}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Images">
+      <UniqueIdentifier>{fca625a6-7fb1-48b8-a05b-1a530b6289ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OpenGL Files">
+      <UniqueIdentifier>{c289acea-6598-4084-ad30-7a1664d5d996}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OpenGL Files\Shader">
+      <UniqueIdentifier>{256d21d6-3909-457e-bbe4-c332c48f173e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OpenGL Files\Texture">
+      <UniqueIdentifier>{a282281c-e043-4247-acfa-46edd4f110de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OpenGL Files\VertexArray">
+      <UniqueIdentifier>{c3d010eb-14a0-46b9-9a0b-9041c7e666b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OpenGL Files\VertexBuffer">
+      <UniqueIdentifier>{72fd2cf8-7b91-432e-a078-8f6d43bdce4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OpenGL Files\Model">
+      <UniqueIdentifier>{2aea38ae-bb1a-492b-ba3b-11c3a760abf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OpenGL Files\Camera">
+      <UniqueIdentifier>{545937c9-49fb-46db-9974-de3312c642f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OpenGL Files\ElementBuffer">
+      <UniqueIdentifier>{502889e4-1f4f-44f2-a517-c9c4f4a988cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OpenGL Files\Mesh">
+      <UniqueIdentifier>{1a751644-17ae-46a9-9f14-c2a859836da4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\OpenGL Files\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementBuffer.cpp">
+      <Filter>Source Files\OpenGL Files\ElementBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files\OpenGL Files\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source Files\OpenGL Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Source Files\OpenGL Files\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source Files\OpenGL Files\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexArray.cpp">
+      <Filter>Source Files\OpenGL Files\VertexArray</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexBuffer.cpp">
+      <Filter>Source Files\OpenGL Files\VertexBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="stb.cpp">
+      <Filter>Source Files\OpenGL Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Camera.h">
+      <Filter>Source Files\OpenGL Files\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="ElementBuffer.h">
+      <Filter>Source Files\OpenGL Files\ElementBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Source Files\OpenGL Files\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Source Files\OpenGL Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Source Files\OpenGL Files\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Source Files\OpenGL Files\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexArray.h">
+      <Filter>Source Files\OpenGL Files\VertexArray</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexBuffer.h">
+      <Filter>Source Files\OpenGL Files\VertexBuffer</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Default.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="Default.vert">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="Light.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="Light.vert">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Planks.png">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="PlanksSpecular.png">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="TestTexture.png">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="TestTextureTiles.png">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
