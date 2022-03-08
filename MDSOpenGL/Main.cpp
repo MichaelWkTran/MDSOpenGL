@@ -103,20 +103,20 @@ int main()
     glUniformMatrix4fv(glGetUniformLocation(ShaderLight.m_GLuID, "uni_mat4Model"), 1, GL_FALSE, glm::value_ptr(mat4LightModel));
     glUniform4f(glGetUniformLocation(ShaderLight.m_GLuID, "uni_v4LightColor"), v4LightColour.x, v4LightColour.y, v4LightColour.z, v4LightColour.w);
     
-    //Set up Pyramid Shader
-    CShader ShaderPyramid("Default.vert", "Default.frag");
+    //Set up Floor Shader
+    CShader ShaderFloor("Default.vert", "Default.frag");
     std::vector<stVertex> vVerticies(stVertices, stVertices + sizeof(stVertices) / sizeof(stVertex));
     std::vector<GLuint> vIndicies(GLuIndices, GLuIndices + sizeof(GLuIndices) / sizeof(GLuint));
     std::vector<CTexture> vTextures(Textures, Textures + sizeof(Textures) / sizeof(CTexture));
     CMesh Floor(vVerticies, vIndicies, vTextures);
     
-    glm::vec3 v3PyramidPos = glm::vec3(0.0f, 0.0f, 0.0f);
-    glm::mat4 mat4PyramidModel = glm::mat4(1.0f);
-    mat4PyramidModel = glm::translate(mat4PyramidModel, v3PyramidPos);
-    ShaderPyramid.Activate();
-    glUniformMatrix4fv(glGetUniformLocation(ShaderPyramid.m_GLuID, "uni_mat4Model"), 1, GL_FALSE, glm::value_ptr(mat4PyramidModel));
-    glUniform4f(glGetUniformLocation(ShaderPyramid.m_GLuID, "uni_v4LightColor"), v4LightColour.x, v4LightColour.y, v4LightColour.z, v4LightColour.w);
-    glUniform3f(glGetUniformLocation(ShaderPyramid.m_GLuID, "uni_v3LightPosition"), v3LightPos.x, v3LightPos.y, v3LightPos.z);
+    glm::vec3 v3FloorPos = glm::vec3(0.0f, 0.0f, 0.0f);
+    glm::mat4 mat4FloorModel = glm::mat4(1.0f);
+    mat4FloorModel = glm::translate(mat4FloorModel, v3FloorPos);
+    ShaderFloor.Activate();
+    glUniformMatrix4fv(glGetUniformLocation(ShaderFloor.m_GLuID, "uni_mat4Model"), 1, GL_FALSE, glm::value_ptr(mat4FloorModel));
+    glUniform4f(glGetUniformLocation(ShaderFloor.m_GLuID, "uni_v4LightColor"), v4LightColour.x, v4LightColour.y, v4LightColour.z, v4LightColour.w);
+    glUniform3f(glGetUniformLocation(ShaderFloor.m_GLuID, "uni_v3LightPosition"), v3LightPos.x, v3LightPos.y, v3LightPos.z);
 
     //Set up Textures
     glEnable(GL_DEPTH_TEST);
@@ -141,7 +141,7 @@ int main()
         Camera.Inputs(pWindow);
         Camera.UpdateMatrix(45.0f, 0.1f, 100.0f);
 
-        Floor.Draw(ShaderPyramid, Camera);
+        Floor.Draw(ShaderFloor, Camera);
         Light.Draw(ShaderLight, Camera);
 
         //Check and call events and swap the buffers
@@ -149,7 +149,7 @@ int main()
         glfwPollEvents();
     }
 
-    ShaderPyramid.Delete();
+    ShaderFloor.Delete();
     ShaderLight.Delete();
     glfwDestroyWindow(pWindow);
     glfwTerminate();
