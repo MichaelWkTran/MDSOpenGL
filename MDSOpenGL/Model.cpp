@@ -2,7 +2,7 @@
 
 CModel::CModel(const char* _pFile)
 {
-	std::string strText = GetFileContents(_pFile);
+	std::string strText = CShader::GetFileContents(_pFile);
 	m_JSON = json::parse(strText);
 
 	m_pFile = _pFile;
@@ -16,7 +16,7 @@ std::vector<unsigned char> CModel::GetData()
 
 	std::string strFile = std::string(m_pFile);
 	std::string strFileDirectory = strFile.substr(0, strFile.find_last_of('/') + 1);
-	strBytesText = GetFileContents((strFileDirectory + strUri).c_str());
+	strBytesText = CShader::GetFileContents((strFileDirectory + strUri).c_str());
 
 	std::vector<unsigned char> vData(strBytesText.begin(), strBytesText.end());
 	return vData;

@@ -1,6 +1,6 @@
 #include "Shader.h"
 
-std::string GetFileContents(const char* _pFileName)
+/*static */std::string CShader::GetFileContents(const char* _pFileName)
 {
 	std::ifstream In(_pFileName, std::ios::binary);
 	if (In)
@@ -55,6 +55,11 @@ void CShader::Activate()
 void CShader::Delete()
 {
 	glDeleteProgram(m_GLuID);
+}
+
+GLuint CShader::GetID()
+{
+	return m_GLuID;
 }
 
 void CShader::CompileErrors(unsigned int _uShader, const char* _pType)

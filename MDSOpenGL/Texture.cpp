@@ -26,7 +26,7 @@ CTexture::CTexture(const char* _pImage, const char* _pType, GLuint _GLuSlot, GLe
 
 void CTexture::TextureUnit(CShader& _Shader, const char* _pUniform, GLuint _GLuUnit)
 {
-	GLuint texUni = glGetUniformLocation(_Shader.m_GLuID, _pUniform);
+	GLuint texUni = glGetUniformLocation(_Shader.GetID(), _pUniform);
 	_Shader.Activate();
 	glUniform1i(texUni, _GLuUnit);
 }
