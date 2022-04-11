@@ -1,14 +1,14 @@
-#include "Mesh.h"
+#include "Classes/Mesh.h"
 
 void FramebufferSizeCallback(GLFWwindow* _pWindow, int _iWidth, int _iHeight);
 
 stVertex stVertices[] =
 {
-    //Coordinates                               /**/    Normals                         /**/    Colours                         /**/    Texture Cordinate
-    stVertex{glm::vec3(-1.0f, 0.0f,  1.0f),     /**/    glm::vec3(0.0f, 1.0f, 0.0f),    /**/    glm::vec3(1.0f, 1.0f, 1.0f),    /**/    glm::vec2(0.0f, 0.0f)},
-    stVertex{glm::vec3(-1.0f, 0.0f, -1.0f),     /**/    glm::vec3(0.0f, 1.0f, 0.0f),    /**/    glm::vec3(1.0f, 1.0f, 1.0f),    /**/    glm::vec2(0.0f, 1.0f)},
-    stVertex{glm::vec3(1.0f,  0.0f, -1.0f),     /**/    glm::vec3(0.0f, 1.0f, 0.0f),    /**/    glm::vec3(1.0f, 1.0f, 1.0f),    /**/    glm::vec2(1.0f, 1.0f)},
-    stVertex{glm::vec3(1.0f,  0.0f,  1.0f),     /**/    glm::vec3(0.0f, 1.0f, 0.0f),    /**/    glm::vec3(1.0f, 1.0f, 1.0f),    /**/    glm::vec2(1.0f, 0.0f)}
+    //Coordinates                              /**/    Normals                         /**/    Colours                         /**/    Texture Cordinate
+    stVertex{glm::vec3(-1.0f, 0.0f,  1.0f),    /**/    glm::vec3(0.0f, 1.0f, 0.0f),    /**/    glm::vec3(1.0f, 1.0f, 1.0f),    /**/    glm::vec2(0.0f, 0.0f)},
+    stVertex{glm::vec3(-1.0f, 0.0f, -1.0f),    /**/    glm::vec3(0.0f, 1.0f, 0.0f),    /**/    glm::vec3(1.0f, 1.0f, 1.0f),    /**/    glm::vec2(0.0f, 1.0f)},
+    stVertex{glm::vec3(1.0f,  0.0f, -1.0f),    /**/    glm::vec3(0.0f, 1.0f, 0.0f),    /**/    glm::vec3(1.0f, 1.0f, 1.0f),    /**/    glm::vec2(1.0f, 1.0f)},
+    stVertex{glm::vec3(1.0f,  0.0f,  1.0f),    /**/    glm::vec3(0.0f, 1.0f, 0.0f),    /**/    glm::vec3(1.0f, 1.0f, 1.0f),    /**/    glm::vec2(1.0f, 0.0f)}
 };
 
 GLuint GLuIndices[]
@@ -20,30 +20,30 @@ GLuint GLuIndices[]
 stVertex stLightVertices[] =
 {
     //Coordinates
-    stVertex{glm::vec3(-0.1f, -0.1f,  0.1f)},
-    stVertex{glm::vec3(-0.1f, -0.1f, -0.1f)},
-    stVertex{glm::vec3(0.1f,  -0.1f, -0.1f)},
-    stVertex{glm::vec3(0.1f,  -0.1f,  0.1f)},
-    stVertex{glm::vec3(-0.1f,  0.1f,  0.1f)},
-    stVertex{glm::vec3(-0.1f,  0.1f, -0.1f)},
-    stVertex{glm::vec3(0.1f,   0.1f, -0.1f)},
-    stVertex{glm::vec3(0.1f,   0.1f,  0.1f)}
+    stVertex{glm::vec3(1.0f,  -1.0f, -1.0f) * 0.1f},
+    stVertex{glm::vec3(-1.0f, -1.0f, -1.0f) * 0.1f},
+    stVertex{glm::vec3(1.0f,  -1.0f,  1.0f) * 0.1f},
+    stVertex{glm::vec3(-1.0f, -1.0f,  1.0f) * 0.1f},
+    stVertex{glm::vec3(1.0f,   1.0f, -1.0f) * 0.1f},
+    stVertex{glm::vec3(-1.0f,  1.0f, -1.0f) * 0.1f},
+    stVertex{glm::vec3(1.0f,   1.0f,  1.0f) * 0.1f},
+    stVertex{glm::vec3(-1.0f,  1.0f,  1.0f) * 0.1f} 
 };
 
 GLuint GLuLightIndices[] =
 {
-    0, 1, 2,
-    0, 2, 3,
-    0, 4, 7,
-    0, 7, 3,
-    3, 7, 6,
-    3, 6, 2,
-    2, 6, 5,
-    2, 5, 1,
-    1, 5, 4,
-    1, 4, 0,
-    4, 5, 6,
-    4, 6, 7
+    0, 2, 1, //Top
+    1, 2, 3,
+    6, 4, 7, //Bottom
+    7, 4, 5,
+    2, 7, 3, //Front
+    2, 6, 7,
+    4, 1, 5, //Back
+    4, 0, 1,
+    7, 5, 3, //Right Side
+    3, 5, 1,
+    4, 6, 0, //Left Side
+    0, 6, 2
 };
 
 
@@ -76,6 +76,8 @@ int main()
         return -1;
     }
 
+    glEnable(GL_CULL_FACE);
+
     //Setup Window Viewport
     glViewport(0, 0, uViewPortW, uViewPortH);
     glfwSetFramebufferSizeCallback(pWindow, FramebufferSizeCallback);
@@ -83,16 +85,16 @@ int main()
     //Set up Textures
     CTexture Textures[]
     {
-        CTexture("Planks.png", "Diffuse", 0, GL_RGBA, GL_UNSIGNED_BYTE),
-        CTexture("PlanksSpecular.png", "Specular", 1, GL_RED, GL_UNSIGNED_BYTE)
+        CTexture("Textures/Planks.png", "Diffuse", 0, GL_RGBA, GL_UNSIGNED_BYTE),
+        CTexture("Textures/PlanksSpecular.png", "Specular", 1, GL_RED, GL_UNSIGNED_BYTE)
     };
     
     //Set up Light Shader
-    CShader ShaderLight("Light.vert", "Light.frag"); ShaderLight.Activate();
+    CShader ShaderLight("Shaders/Light.vert", "Shaders/Light.frag"); ShaderLight.Activate();
     std::vector<stVertex> vLightVerticies(stLightVertices, stLightVertices + sizeof(stLightVertices) / sizeof(stVertex));
     std::vector<GLuint> vLightIndicies(GLuLightIndices, GLuLightIndices + sizeof(GLuLightIndices) / sizeof(GLuint));
     std::vector<CTexture> vLightTextures(Textures, Textures + sizeof(Textures) / sizeof(CTexture));
-    CMesh Light(vLightVerticies, vLightIndicies, vLightTextures);
+    CMesh Light(vLightVerticies, vLightIndicies, vLightTextures, &ShaderLight);
     
     glm::vec4 v4LightColour(1.0f, 1.0f, 1.0f, 1.0f);
     glm::vec3 v3LightPos = glm::vec3(0.5f, 0.5f, 0.5f);
@@ -103,15 +105,16 @@ int main()
     glUniform4f(glGetUniformLocation(ShaderLight.GetID(), "uni_v4LightColor"), v4LightColour.x, v4LightColour.y, v4LightColour.z, v4LightColour.w);
     
     //Set up Floor Shader
-    CShader ShaderFloor("Default.vert", "Default.frag"); ShaderFloor.Activate();
+    CShader ShaderFloor("Shaders/Default.vert", "Shaders/Default.frag"); ShaderFloor.Activate();
     std::vector<stVertex> vVerticies(stVertices, stVertices + sizeof(stVertices) / sizeof(stVertex));
     std::vector<GLuint> vIndicies(GLuIndices, GLuIndices + sizeof(GLuIndices) / sizeof(GLuint));
     std::vector<CTexture> vTextures(Textures, Textures + sizeof(Textures) / sizeof(CTexture));
-    CMesh Floor(vVerticies, vIndicies, vTextures);
+    CMesh Floor(vVerticies, vIndicies, vTextures, &ShaderFloor);
     
     glm::mat4 mat4FloorModel = glm::mat4(1.0f);
     mat4FloorModel = glm::translate(mat4FloorModel, glm::vec3(0.0f, 0.0f, 0.0f));
-    
+    mat4FloorModel = glm::rotate(mat4FloorModel, glm::radians(180.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+        
     glUniformMatrix4fv(glGetUniformLocation(ShaderFloor.GetID(), "uni_mat4Model"), 1, GL_FALSE, glm::value_ptr(mat4FloorModel));
     glUniform4f(glGetUniformLocation(ShaderFloor.GetID(), "uni_v4LightColor"), v4LightColour.x, v4LightColour.y, v4LightColour.z, v4LightColour.w);
     glUniform3f(glGetUniformLocation(ShaderFloor.GetID(), "uni_v3LightPosition"), v3LightPos.x, v3LightPos.y, v3LightPos.z);
@@ -139,8 +142,8 @@ int main()
         Camera.Inputs(pWindow);
         Camera.Update();
 
-        Floor.Draw(ShaderFloor, Camera);
-        Light.Draw(ShaderLight, Camera);
+        Floor.Draw(Camera);
+        Light.Draw(Camera);
 
         //Check and call events and swap the buffers
         glfwSwapBuffers(pWindow);
