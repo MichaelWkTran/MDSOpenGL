@@ -1,7 +1,7 @@
 #include "GenerateMesh.h"
 #include <glm/gtc/constants.hpp>
 
-void gm::GenerateCube(CMesh& _Mesh, glm::vec3 _v3Scale/* = glm::vec3(1.0f,1.0f,1.0f)*/)
+void gm::GenerateCube(CMesh<>& _Mesh, glm::vec3 _v3Scale/* = glm::vec3(1.0f,1.0f,1.0f)*/)
 {
 	std::vector<stVertex> vVertices =
 	{
@@ -36,7 +36,7 @@ void gm::GenerateCube(CMesh& _Mesh, glm::vec3 _v3Scale/* = glm::vec3(1.0f,1.0f,1
 	_Mesh.SetIndicies(vIndices);
 }
 
-void gm::GenerateFlatCube(CMesh& _Mesh, glm::vec3 _v3Scale/* = glm::vec3(1.0f,1.0f,1.0f)*/)
+void gm::GenerateFlatCube(CMesh<>& _Mesh, glm::vec3 _v3Scale/* = glm::vec3(1.0f,1.0f,1.0f)*/)
 {
 	std::vector<stVertex> vVertices =
 	{
@@ -92,7 +92,7 @@ void gm::GenerateFlatCube(CMesh& _Mesh, glm::vec3 _v3Scale/* = glm::vec3(1.0f,1.
 	_Mesh.SetIndicies(vIndices);
 }
 
-void gm::GeneratePlane(CMesh& _Mesh, glm::vec3 _v3Scale)
+void gm::GeneratePlane(CMesh<>& _Mesh, glm::vec3 _v3Scale)
 {
 	std::vector<stVertex> vVertices =
 	{
@@ -112,7 +112,7 @@ void gm::GeneratePlane(CMesh& _Mesh, glm::vec3 _v3Scale)
 	_Mesh.SetIndicies(vIndices);
 }
 
-void gm::GenerateSphere(CMesh& _Mesh, const float _fRadius, const int _iFidelity)
+void gm::GenerateSphere(CMesh<>& _Mesh, const float _fRadius, const int _iFidelity)
 {
 	std::vector<stVertex> vVertices;
 	std::vector<unsigned int> vIndices;

@@ -1,10 +1,2 @@
-﻿  CubeSkybox.cpp
-  GameObject.cpp
-  Mesh.cpp
-  Model.cpp
-  Player.cpp
-  TextLabel.cpp
-  GenerateMesh.cpp
-  Main.cpp
-  Generating Code...
+﻿  Main.cpp
   MDSOpenGL.vcxproj -> D:\Projects\MDSOpenGL\Debug\MDSOpenGL.exe

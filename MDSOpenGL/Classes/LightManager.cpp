@@ -14,28 +14,72 @@ std::vector<stSpotLight> CLightManager::m_vSpotLight;
 
 /*static*/ bool CLightManager::UpdateDiffuseShader(const char* _pShaderFile)
 {
-	//std::fstream FStream(_pShaderFile);
-	//if (FStream.is_open()) return false;
-	//
-	//bool bExitLoop = false;
-	//while (!FStream.eof() && !bExitLoop)
-	//{
-	//	std::string strLine;
-	//	std::getline(FStream, strLine);
-	//	
-	//	if (strLine.find(""))
-	//}
-	//
-	//FStream.close();
+	//WARNING NEVER USE IN RUNTIME
+
+	std::string strBuffer;
+	std::ifstream ifstreamFile(_pShaderFile); if (!ifstreamFile.is_open()) return false;
+	std::ofstream ofstreamFile("temp.txt"); if (!ofstreamFile.is_open()) { ifstreamFile.close(); return false; }
+
+	int iLightTypeIndex = 0;
+	while (!ifstreamFile.eof())
+	{
+		getline(ifstreamFile, strBuffer);
+
+		//Find the line to replace in the old file and
+		//replace it with the desired line
+		switch (iLightTypeIndex)
+		{
+		case 0:
+			if (strBuffer.find("#define INF_POINT_LIGHT_NUM"))
+			{
+				strBuffer = "#define INF_POINT_LIGHT_NUM " + m_vInfinitePointLight.size();
+				iLightTypeIndex++;
+			}
+			break;
+		case 1:
+			if (strBuffer.find("#define POINT_LIGHT_NUM"))
+			{
+				strBuffer = "#define POINT_LIGHT_NUM " + m_vPointLight.size();
+				iLightTypeIndex++;
+			}
+			break;
+		case 2:
+			if (strBuffer.find("#define DIRECTIONAL_LIGHT_NUM"))
+			{
+				strBuffer = "#define DIRECTIONAL_LIGHT_NUM " + m_vDirectionalLight.size();
+				iLightTypeIndex++;
+			}
+			break;
+		case 3:
+			if (strBuffer.find("#define SPOT_LIGHT_NUM"))
+			{
+				strBuffer = "#define SPOT_LIGHT_NUM " + m_vSpotLight.size();
+				iLightTypeIndex++;
+			}
+			break;
+		}
+
+		//Write to the temporary file
+		ofstreamFile << strBuffer << std::endl;
+	}
+
+	ifstreamFile.close();
+	ofstreamFile.close();
+
+	remove(_pShaderFile);
+	rename("temp.txt", _pShaderFile);
+
 	return true;
 }
 
 /*static*/ bool CLightManager::UpdateDiffuseShaders(std::vector<const char*> _vShaderFiles)
 {
-	//for (auto pShaderFiles : _vShaderFiles)
-	//{
-	//	if (!UpdateDiffuseShader(pShaderFiles)) return false;
-	//}
+	//WARNING NEVER USE IN RUNTIME
+
+	for (auto pShaderFiles : _vShaderFiles)
+	{
+		if (!UpdateDiffuseShader(pShaderFiles)) return false;
+	}
 
 	return true;
 }

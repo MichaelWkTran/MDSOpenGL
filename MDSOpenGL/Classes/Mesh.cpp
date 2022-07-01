@@ -1,4 +1,4 @@
-#include "Mesh.h"
+/*#include "Mesh.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <string>
@@ -88,4 +88,4 @@ void CMesh::Draw(const CCamera& _Camera)
 	//Deactivate and unbind vertex array and shader
 	m_pShader->Deactivate();
 	m_VertexArray.Unbind();
-}
+}*/

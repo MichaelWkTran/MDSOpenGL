@@ -5,7 +5,7 @@
 class CPlayer
 {
 private:
-	CMesh m_Mesh;
+	CMesh<> m_Mesh;
 	glm::mat4x4 m_mat4Model;
 
 	bool m_bUpdateTransform;

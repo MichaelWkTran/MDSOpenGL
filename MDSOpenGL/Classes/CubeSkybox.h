@@ -12,5 +12,5 @@ public:
 	void Draw(const CCamera& _Camera);
 
 private:
-	CMesh m_Mesh;
+	CMesh<> m_Mesh;
 };

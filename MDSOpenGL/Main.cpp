@@ -78,8 +78,6 @@ int main()
 
         Crate.m_Mesh.m_vTextures.push_back(CTextureManager::Insert("Resources/Textures/Crate.png", "Diffuse", 0, GL_RGBA, GL_UNSIGNED_BYTE));
         Crate.m_Mesh.m_vTextures.push_back(CTextureManager::Insert("Resources/Textures/CrateReflect.png", "Reflect", 1, GL_RED, GL_UNSIGNED_BYTE));
-
-        Crate.m_fReflectionStrength = 1.0f;
     }
 
     //Setup textures for the spheres and the 
@@ -104,8 +102,6 @@ int main()
 
             pSphere->m_Mesh.m_vTextures.push_back(pDiffuse);
             pSphere->m_Mesh.m_vTextures.push_back(pSpecular);
-
-            pSphere->m_v4RimColor = glm::vec4(1.0f, 0.0f, 0.0f, 0.5f);
         }
     }
 
@@ -126,7 +122,9 @@ int main()
         CLightManager::m_vDirectionalLight.push_back(stDirectionalLight{glm::vec3(-1.0f, -1.0f, 1.0f), glm::vec4(1.0f, 0.0f, 1.0f, 1.0f) });
         CLightManager::m_vPointLight.push_back(stPointLight{ glm::vec3(0.4f, 0.4f, 0.4f), glm::vec4(0.0f, 0.0f, 1.0f, 1.0f) });
         CLightManager::m_vPointLight.push_back(stPointLight{ glm::vec3(-0.4f, -0.4f, -0.4f), glm::vec4(0.0f, 1.0f, 0.0f, 1.0f) });
-        CLightManager::m_vSpotLight.push_back(stSpotLight{ glm::vec3(0.0f, -1.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f), glm::vec4(1.0f, 1.0f, 0.0f, 1.0f), 0.9f, 0.95f});
+        //CLightManager::m_vSpotLight.push_back(stSpotLight{ glm::vec3(0.0f, -1.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f), glm::vec4(1.0f, 1.0f, 0.0f, 1.0f), 0.9f, 0.95f});
+
+        //CLightManager::UpdateDiffuseShader("Resources/Shaders/Diffuse.frag");
     }
 
     glClearColor(CLightManager::m_v4AmbientColour.x, CLightManager::m_v4AmbientColour.y, CLightManager::m_v4AmbientColour.z, 1.0f);

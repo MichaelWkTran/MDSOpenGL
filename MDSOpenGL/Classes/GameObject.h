@@ -1,5 +1,7 @@
 #include "Mesh.h"
+#include "GameObjectComponent.h"
 #include <glm/gtx/vector_angle.hpp>
+#include <vector>
 
 class CGameObject
 {
@@ -12,14 +14,9 @@ private:
 	glm::vec3 m_v3Scale;
 
 public:
-	CMesh m_Mesh;
-
-	float m_fSpecularStrength;
-	float m_fShininess;
-	float m_fRimExponent;
-	glm::vec4 m_v4RimColor;
-	float m_fReflectionStrength;
-
+	std::vector<CGameObjectComponent> m_Components;
+	CMesh<> m_Mesh;
+	
 	CGameObject();
 	~CGameObject() {};
 

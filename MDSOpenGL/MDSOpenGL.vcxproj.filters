@@ -44,6 +44,9 @@
     <ClCompile Include="Classes\Camera.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
+    <ClCompile Include="Classes\GameObjectComponent.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GenerateMesh.h" />
@@ -88,6 +91,9 @@
       <Filter>Classes</Filter>
     </ClInclude>
     <ClInclude Include="Classes\Camera.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\GameObjectComponent.h">
       <Filter>Classes</Filter>
     </ClInclude>
   </ItemGroup>

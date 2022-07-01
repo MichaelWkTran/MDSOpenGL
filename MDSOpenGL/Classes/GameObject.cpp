@@ -11,12 +11,6 @@ CGameObject::CGameObject()
     m_v3Position = glm::vec3(0.0f, 0.0f, 0.0f);
     m_fquatRotation = glm::quat(1.0f, 0.0f, 0.0f, 0.0f);
     m_v3Scale = glm::vec3(1.0f, 1.0f, 1.0f);
-
-    m_fSpecularStrength = 0.3f;
-    m_fShininess = 16.0f;
-    m_fRimExponent = 16.0f;
-    m_v4RimColor = glm::vec4(1.0f, 1.0f, 1.0f, 0.0f);
-    m_fReflectionStrength = 0.0f;
 }
 
 const glm::mat4x4 CGameObject::GetModel() const { return m_mat4Model; }
@@ -39,12 +33,6 @@ void CGameObject::Draw(const CCamera& _Camera)
     
     m_Mesh.m_pShader->Activate();
     glUniformMatrix4fv(glGetUniformLocation(*m_Mesh.m_pShader, "uni_mat4Model"), 1, GL_FALSE, glm::value_ptr(m_mat4Model));
-
-    m_Mesh.m_pShader->Uniform1f("uni_fSpecularStrength", m_fSpecularStrength);
-    m_Mesh.m_pShader->Uniform1f("uni_fShininess", m_fShininess);
-    m_Mesh.m_pShader->Uniform1f("uni_fRimExponent", m_fRimExponent);
-    m_Mesh.m_pShader->Uniform4f("uni_v4RimColor", m_v4RimColor.x, m_v4RimColor.y, m_v4RimColor.z, m_v4RimColor.w);
-    m_Mesh.m_pShader->Uniform1f("uni_fReflectionStrength", m_fReflectionStrength);
 
     m_Mesh.Draw(_Camera);
     m_Mesh.m_pShader->Deactivate();
