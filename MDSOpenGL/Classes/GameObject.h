@@ -14,7 +14,7 @@ private:
 	glm::vec3 m_v3Scale;
 
 public:
-	std::vector<CGameObjectComponent> m_Components;
+	std::vector<CGameObjectComponent*> m_Components;
 	CMesh<> m_Mesh;
 	
 	CGameObject();

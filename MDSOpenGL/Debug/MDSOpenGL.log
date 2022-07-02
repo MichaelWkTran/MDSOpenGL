@@ -1,11 +1,5 @@
-﻿  Camera.cpp
-  CubeSkybox.cpp
-  GameObject.cpp
-  LightManager.cpp
-  Model.cpp
-  Player.cpp
-  TextLabel.cpp
-  GenerateMesh.cpp
+﻿  GameObject.cpp
+  GameObjectComponent.cpp
   Main.cpp
   Generating Code...
-  MDSOpenGL.vcxproj -> C:\Users\User\Documents\GitHub\MDSOpenGL\Debug\MDSOpenGL.exe
+  MDSOpenGL.vcxproj -> D:\Projects\MDSOpenGL\Debug\MDSOpenGL.exe
