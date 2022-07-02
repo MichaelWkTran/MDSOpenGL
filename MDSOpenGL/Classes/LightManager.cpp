@@ -16,6 +16,15 @@ std::vector<stSpotLight> CLightManager::m_vSpotLight;
 {
 	//WARNING NEVER USE IN RUNTIME
 
+	auto lamModifyLightTypeNumDefine = [](std::string& _strBuffer, const char* _strSequence, int&& _iLightTypeCount, int& _iLightTypeIndex)
+	{
+		if (_strBuffer.find(_strSequence) == std::string::npos) return;
+		
+		if (_iLightTypeCount <= 0)_iLightTypeCount = 1;
+		_strBuffer = _strSequence + std::to_string(_iLightTypeCount);
+		_iLightTypeIndex++;
+	};
+
 	std::string strBuffer;
 	std::ifstream ifstreamFile(_pShaderFile); if (!ifstreamFile.is_open()) return false;
 	std::ofstream ofstreamFile("temp.txt"); if (!ofstreamFile.is_open()) { ifstreamFile.close(); return false; }
@@ -30,32 +39,16 @@ std::vector<stSpotLight> CLightManager::m_vSpotLight;
 		switch (iLightTypeIndex)
 		{
 		case 0:
-			if (strBuffer.find("#define INF_POINT_LIGHT_NUM"))
-			{
-				strBuffer = "#define INF_POINT_LIGHT_NUM " + m_vInfinitePointLight.size();
-				iLightTypeIndex++;
-			}
+			lamModifyLightTypeNumDefine(strBuffer, "#define INF_POINT_LIGHT_NUM ", m_vInfinitePointLight.size(), iLightTypeIndex);
 			break;
 		case 1:
-			if (strBuffer.find("#define POINT_LIGHT_NUM"))
-			{
-				strBuffer = "#define POINT_LIGHT_NUM " + m_vPointLight.size();
-				iLightTypeIndex++;
-			}
+			lamModifyLightTypeNumDefine(strBuffer, "#define POINT_LIGHT_NUM ", m_vPointLight.size(), iLightTypeIndex);
 			break;
 		case 2:
-			if (strBuffer.find("#define DIRECTIONAL_LIGHT_NUM"))
-			{
-				strBuffer = "#define DIRECTIONAL_LIGHT_NUM " + m_vDirectionalLight.size();
-				iLightTypeIndex++;
-			}
+			lamModifyLightTypeNumDefine(strBuffer, "#define DIRECTIONAL_LIGHT_NUM ", m_vDirectionalLight.size(), iLightTypeIndex);
 			break;
 		case 3:
-			if (strBuffer.find("#define SPOT_LIGHT_NUM"))
-			{
-				strBuffer = "#define SPOT_LIGHT_NUM " + m_vSpotLight.size();
-				iLightTypeIndex++;
-			}
+			lamModifyLightTypeNumDefine(strBuffer, "#define SPOT_LIGHT_NUM ", m_vSpotLight.size(), iLightTypeIndex);
 			break;
 		}
 

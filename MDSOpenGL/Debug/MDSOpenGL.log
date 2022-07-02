@@ -1,2 +1,11 @@
-﻿  Main.cpp
-  MDSOpenGL.vcxproj -> D:\Projects\MDSOpenGL\Debug\MDSOpenGL.exe
+﻿  Camera.cpp
+  CubeSkybox.cpp
+  GameObject.cpp
+  LightManager.cpp
+  Model.cpp
+  Player.cpp
+  TextLabel.cpp
+  GenerateMesh.cpp
+  Main.cpp
+  Generating Code...
+  MDSOpenGL.vcxproj -> C:\Users\User\Documents\GitHub\MDSOpenGL\Debug\MDSOpenGL.exe

@@ -122,9 +122,9 @@ int main()
         CLightManager::m_vDirectionalLight.push_back(stDirectionalLight{glm::vec3(-1.0f, -1.0f, 1.0f), glm::vec4(1.0f, 0.0f, 1.0f, 1.0f) });
         CLightManager::m_vPointLight.push_back(stPointLight{ glm::vec3(0.4f, 0.4f, 0.4f), glm::vec4(0.0f, 0.0f, 1.0f, 1.0f) });
         CLightManager::m_vPointLight.push_back(stPointLight{ glm::vec3(-0.4f, -0.4f, -0.4f), glm::vec4(0.0f, 1.0f, 0.0f, 1.0f) });
-        //CLightManager::m_vSpotLight.push_back(stSpotLight{ glm::vec3(0.0f, -1.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f), glm::vec4(1.0f, 1.0f, 0.0f, 1.0f), 0.9f, 0.95f});
+        CLightManager::m_vSpotLight.push_back(stSpotLight{ glm::vec3(0.0f, -1.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f), glm::vec4(1.0f, 1.0f, 0.0f, 1.0f), 0.9f, 0.95f});
 
-        //CLightManager::UpdateDiffuseShader("Resources/Shaders/Diffuse.frag");
+        CLightManager::UpdateDiffuseShader("Resources/Shaders/Diffuse.frag");
     }
 
     glClearColor(CLightManager::m_v4AmbientColour.x, CLightManager::m_v4AmbientColour.y, CLightManager::m_v4AmbientColour.z, 1.0f);
