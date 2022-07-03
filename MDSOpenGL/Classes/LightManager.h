@@ -3,8 +3,7 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <vector>
-#include "Shader.h"
-#include "Camera.h"
+class CShader;
 
 struct stInfinitePointLight
 {

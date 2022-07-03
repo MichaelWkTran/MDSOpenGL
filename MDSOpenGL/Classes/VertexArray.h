@@ -1,7 +1,6 @@
 #pragma once
 #include <GLEW/glew.h>
 #include <GLFW/glfw3.h>
-#include "VertexBuffer.h"
 
 class CVertexArray
 {
@@ -25,4 +24,3 @@ public:
 	void Bind();
 	void Unbind();
 };
-

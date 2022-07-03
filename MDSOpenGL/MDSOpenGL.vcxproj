@@ -154,10 +154,9 @@
     <ClCompile Include="Classes\Camera.cpp" />
     <ClCompile Include="Classes\CubeSkybox.cpp" />
     <ClCompile Include="Classes\ElementBuffer.cpp" />
+    <ClCompile Include="Classes\GameManager.cpp" />
     <ClCompile Include="Classes\GameObject.cpp" />
-    <ClCompile Include="Classes\GameObjectComponent.cpp" />
     <ClCompile Include="Classes\LightManager.cpp" />
-    <ClCompile Include="Classes\Mesh.cpp" />
     <ClCompile Include="Classes\MeshTris.cpp" />
     <ClCompile Include="Classes\Model.cpp" />
     <ClCompile Include="Classes\Player.cpp" />
@@ -174,6 +173,7 @@
     <ClInclude Include="Classes\Camera.h" />
     <ClInclude Include="Classes\CubeSkybox.h" />
     <ClInclude Include="Classes\ElementBuffer.h" />
+    <ClInclude Include="Classes\GameManager.h" />
     <ClInclude Include="Classes\GameObject.h" />
     <ClInclude Include="Classes\GameObjectComponent.h" />
     <ClInclude Include="Classes\LightManager.h" />

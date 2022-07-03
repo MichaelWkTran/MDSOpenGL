@@ -1,5 +1,8 @@
 #include "Shader.h"
-#include <string>
+#include <fstream>
+#include <sstream>
+#include <iostream>
+#include <cerrno>
 
 void CShader::CompileErrors(unsigned int _uShader, const char* _pType)
 {

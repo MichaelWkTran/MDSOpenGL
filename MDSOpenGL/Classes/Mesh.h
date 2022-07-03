@@ -1,4 +1,6 @@
 #pragma once
+#include "GameObjectComponent.h"
+#include "GameObject.h"
 #include "VertexArray.h"
 #include "VertexBuffer.h"
 #include "ElementBuffer.h"
@@ -19,11 +21,7 @@ struct stVertex
 
 	static void LinkAttributes(CVertexArray* _pVertexArray, CVertexBuffer<stVertex>* _pVertexBuffer, CElementBuffer* _pElementBuffer)
 	{
-		if (_pVertexArray == nullptr || _pVertexBuffer == nullptr || _pElementBuffer == nullptr)
-		{
-
-			return;
-		}
+		if (_pVertexArray == nullptr || _pVertexBuffer == nullptr || _pElementBuffer == nullptr) return;
 
 		_pVertexArray->Bind(); _pVertexBuffer->Bind(); _pElementBuffer->Bind();
 
@@ -37,15 +35,13 @@ struct stVertex
 };
 
 template <class T = stVertex>
-class CMesh
+class CMesh : public CGameObjectComponent
 {
 protected:
 	CVertexArray m_VertexArray;
 	CElementBuffer m_ElementBuffer;
 	CVertexBuffer<T> m_VertexBuffer;
-
 	bool m_bUpdateVertexArray;
-	virtual void UpdateVertexArray();
 
 public:
 	std::vector <CTexture*> m_vTextures;
@@ -62,15 +58,6 @@ public:
 
 	void Draw(const CCamera& _Camera);
 };
-
-template<class T>
-inline void CMesh<T>::UpdateVertexArray()
-{
-	if (!m_bUpdateVertexArray || m_pShader == nullptr) return void();
-	m_bUpdateVertexArray = false;
-
-	T::LinkAttributes(&m_VertexArray, &m_VertexBuffer, &m_ElementBuffer);
-}
 
 template<class T>
 inline CMesh<T>::CMesh()
@@ -121,15 +108,29 @@ inline void CMesh<T>::Draw(const CCamera& _Camera)
 {
 	if (m_pShader == nullptr || m_VertexBuffer.GetVertices().empty()) return void();
 
-	//Update vertex array if its transform has changed
-	UpdateVertexArray();
+	//Update vertex array if its vertex data has changed
+	if (m_bUpdateVertexArray)
+	{
+		m_bUpdateVertexArray = false;
+		T::LinkAttributes(&m_VertexArray, &m_VertexBuffer, &m_ElementBuffer);
+	}
 
 	//Bind vertex array and activate shader
 	m_VertexArray.Bind();
 	m_pShader->Activate();
 
+	//Set GameObject Uniform
+	if (m_pGameObject != nullptr)
+	{
+		glUniformMatrix4fv(glGetUniformLocation(*m_pShader, "uni_mat4Model"), 1, GL_FALSE, glm::value_ptr(m_pGameObject->GetModel()));
+	}
+	else
+	{
+		glUniformMatrix4fv(glGetUniformLocation(*m_pShader, "uni_mat4Model"), 1, GL_FALSE, glm::value_ptr(glm::mat4(1)));
+	}
+	
 	//Set Mesh Uniforms
-	m_pShader->Uniform3f("uni_v3CameraPosition", _Camera.m_v3Position);
+	m_pShader->Uniform3f("uni_v3CameraPosition", _Camera.m_pGameObject->GetPosition());
 	glUniformMatrix4fv(glGetUniformLocation(*m_pShader, "uni_mat4CameraMatrix"), 1, GL_FALSE, glm::value_ptr(_Camera.GetCameraMatrix()));
 
 	//Set Texture Uniforms

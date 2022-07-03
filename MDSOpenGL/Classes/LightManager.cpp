@@ -1,5 +1,6 @@
 #include "LightManager.h"
-//#include <fstream>
+#include "Shader.h"
+#include <fstream>
 
 glm::vec4 CLightManager::m_v4AmbientColour = glm::vec4(1.0f,1.0f,1.0f,0.2f);
 std::vector<stInfinitePointLight> CLightManager::m_vInfinitePointLight;
@@ -60,9 +61,7 @@ std::vector<stSpotLight> CLightManager::m_vSpotLight;
 	ofstreamFile.close();
 
 	remove(_pShaderFile);
-	rename("temp.txt", _pShaderFile);
-
-	return true;
+	return rename("temp.txt", _pShaderFile) == 0;
 }
 
 /*static*/ bool CLightManager::UpdateDiffuseShaders(std::vector<const char*> _vShaderFiles)

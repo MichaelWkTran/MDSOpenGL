@@ -1,5 +1,18 @@
-﻿  GameObject.cpp
-  GameObjectComponent.cpp
+﻿  Camera.cpp
+D:\Michael\Other Stuff\C++\MDSOpenGL\MDSOpenGL\Classes\GameObject.h(5,12): warning C4091: '': ignored on left of 'std::thread' when no variable is declared
+  CubeSkybox.cpp
+D:\Michael\Other Stuff\C++\MDSOpenGL\MDSOpenGL\Classes\GameObject.h(5,12): warning C4091: '': ignored on left of 'std::thread' when no variable is declared
+  GameManager.cpp
+D:\Michael\Other Stuff\C++\MDSOpenGL\MDSOpenGL\Classes\GameObject.h(5,12): warning C4091: '': ignored on left of 'std::thread' when no variable is declared
+  GameObject.cpp
+D:\Michael\Other Stuff\C++\MDSOpenGL\MDSOpenGL\Classes\GameObject.h(5,12): warning C4091: '': ignored on left of 'std::thread' when no variable is declared
+  Model.cpp
+D:\Michael\Other Stuff\C++\MDSOpenGL\MDSOpenGL\Classes\GameObject.h(5,12): warning C4091: '': ignored on left of 'std::thread' when no variable is declared
+  Player.cpp
+D:\Michael\Other Stuff\C++\MDSOpenGL\MDSOpenGL\Classes\GameObject.h(5,12): warning C4091: '': ignored on left of 'std::thread' when no variable is declared
+  GenerateMesh.cpp
+D:\Michael\Other Stuff\C++\MDSOpenGL\MDSOpenGL\Classes\GameObject.h(5,12): warning C4091: '': ignored on left of 'std::thread' when no variable is declared
   Main.cpp
+D:\Michael\Other Stuff\C++\MDSOpenGL\MDSOpenGL\Classes\GameObject.h(5,12): warning C4091: '': ignored on left of 'std::thread' when no variable is declared
   Generating Code...
-  MDSOpenGL.vcxproj -> D:\Projects\MDSOpenGL\Debug\MDSOpenGL.exe
+  MDSOpenGL.vcxproj -> D:\Michael\Other Stuff\C++\MDSOpenGL\Debug\MDSOpenGL.exe

@@ -7,7 +7,6 @@
 
 #include <map>
 #include <string>
-#include <iostream>
 
 #include "Shader.h"
 #include "Mesh.h"

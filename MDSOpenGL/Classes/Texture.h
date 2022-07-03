@@ -4,8 +4,9 @@
 #include <stb/stb_image.h>
 #include <map>
 #include <vector>
-#include "Shader.h"
+#include <string>
 
+class CShader;
 class CTexture;
 
 class CTextureManager

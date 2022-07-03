@@ -1,4 +1,8 @@
 #include "ElementBuffer.h"
+#include <GLEW/glew.h>
+#include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
+#include <vector>
 
 CElementBuffer::CElementBuffer()
 {

@@ -1,8 +1,10 @@
-#include "Classes/GameObject.h"
+#include "Classes/GameManager.h"
 #include "Classes/LightManager.h"
 #include "Classes/CubeSkybox.h"
 #include "ExternVariables.h"
 #include "GenerateMesh.h"
+#include "Classes/GameObjectComponent.h"
+#include <iostream>
 
 int main()
 {
@@ -49,6 +51,9 @@ int main()
     glfwWindowHint(GLFW_SAMPLES, 4);
     glEnable(GL_MULTISAMPLE);
 
+    //Create Game Manager
+    CGameManager GameManager;
+
     //Set up Shaders
     CShader Diffuse("Resources/Shaders/Diffuse.vert", "Resources/Shaders/Diffuse.frag");
 
@@ -67,52 +72,63 @@ int main()
     CubeMap.UpdateShaderUniforms(&Diffuse);
 
     //Set up Camera
-    CCamera Camera(e_uViewPortW, e_uViewPortH, true, glm::vec3(0.0f, 0.0f, 2.0f), glm::vec3(0.0f, 0.0f, -1.0f));
-    Camera.SetFarPlane(4000.0f);
-
-    CGameObject Crate;
+    CCamera* Camera = nullptr;
     {
-        gm::GenerateFlatCube(Crate.m_Mesh, glm::vec3(1.0f, 1.0f, 1.0f) * 0.1f);
-        Crate.m_Mesh.m_pShader = &Diffuse;
-        Crate.SetPosition(glm::vec3(-0.2f, 0.0f, 0.0f));
-
-        Crate.m_Mesh.m_vTextures.push_back(CTextureManager::Insert("Resources/Textures/Crate.png", "Diffuse", 0, GL_RGBA, GL_UNSIGNED_BYTE));
-        Crate.m_Mesh.m_vTextures.push_back(CTextureManager::Insert("Resources/Textures/CrateReflect.png", "Reflect", 1, GL_RED, GL_UNSIGNED_BYTE));
+        CGameObject* CameraObject = GameManager.CreateObject<CGameObject>();
+        CameraObject->SetPosition(glm::vec3(0.0f, 0.0f, -2.0f));
+        Camera = CameraObject->AddComponent<CCamera>();
+        Camera->SetFarPlane(4000.0f);
+        GameManager.m_pCamera = Camera;
     }
 
-    //Setup textures for the spheres and the 
+    CGameObject* pCrate = GameManager.CreateObject<CGameObject>();
+    {
+        pCrate->SetPosition(glm::vec3(-0.2f, 0.0f, 0.0f));
+    
+        //Setup Mesh Component
+        CMesh<>* pMesh = pCrate->AddComponent<CMesh<>>();
+        gm::GenerateFlatCube(*pMesh, glm::vec3(1.0f, 1.0f, 1.0f) * 0.1f);
+        pMesh->m_pShader = &Diffuse;
+        pMesh->m_vTextures.push_back(CTextureManager::Insert("Resources/Textures/Crate.png", "Diffuse", 0, GL_RGBA, GL_UNSIGNED_BYTE));
+        pMesh->m_vTextures.push_back(CTextureManager::Insert("Resources/Textures/CrateReflect.png", "Reflect", 1, GL_RED, GL_UNSIGNED_BYTE));
+    }
+
+    //Setup textures for the spheres and the plane
     CTexture* pDiffuse = CTextureManager::Insert("Resources/Textures/Planks.png", "Diffuse", 0, GL_RGBA, GL_UNSIGNED_BYTE);
     CTexture* pSpecular = CTextureManager::Insert("Resources/Textures/PlanksSpecular.png", "Specular", 1, GL_RED, GL_UNSIGNED_BYTE);
 
-    std::vector<CGameObject*> vSpheres;
+    //Create Spheres
     {
         glm::ivec3 v3iGrouping(3, 3, 3);
         float fSepparation = 0.4f;
         glm::vec3 v2Position(-fSepparation, -fSepparation, -fSepparation);
-
+    
         for (int x = 0; x < v3iGrouping.x; x++) for (int y = 0; y < v3iGrouping.y; y++) for (int z = 0; z < v3iGrouping.z; z++)
         {
-            vSpheres.emplace_back(new CGameObject);
-            CGameObject* pSphere = vSpheres.back();
-
+            CGameObject* pSphere = GameManager.CreateObject<CGameObject>();
             pSphere->SetPosition(glm::vec3(x, y, z) * fSepparation + v2Position);
-
-            pSphere->m_Mesh.m_pShader = &Diffuse;
-            gm::GenerateSphere(pSphere->m_Mesh, 0.05f, 20);
-
-            pSphere->m_Mesh.m_vTextures.push_back(pDiffuse);
-            pSphere->m_Mesh.m_vTextures.push_back(pSpecular);
+    
+            //Setup Mesh Component
+            CMesh<>* pMesh = pSphere->AddComponent<CMesh<>>();
+            gm::GenerateSphere(*pMesh, 0.05f, 20);
+            pMesh->m_pShader = &Diffuse;
+            pMesh->m_vTextures.push_back(pDiffuse);
+            pMesh->m_vTextures.push_back(pSpecular);
         }
     }
 
-    CGameObject Plane;
+    CGameObject* pPlane = GameManager.CreateObject<CGameObject>();
     {
-        gm::GeneratePlane(Plane.m_Mesh, glm::vec3(5.0f,5.0f,5.0f));
-        Plane.m_Mesh.m_pShader = &Diffuse;
-        Plane.m_Mesh.m_vTextures.push_back(pDiffuse);
-        Plane.m_Mesh.m_vTextures.push_back(pSpecular);
+        pPlane->SetPosition(glm::vec3(0.0f, -0.6f, 0.0f));
 
-        Plane.SetPosition(glm::vec3(0.0f, -0.6f, 0.0f));
+        //Setup Mesh Component
+        {
+            CMesh<>* pMesh = pPlane->AddComponent<CMesh<>>();
+            gm::GeneratePlane(*pMesh, glm::vec3(5.0f, 5.0f, 5.0f));
+            pMesh->m_pShader = &Diffuse;
+            pMesh->m_vTextures.push_back(pDiffuse);
+            pMesh->m_vTextures.push_back(pSpecular);
+        }
     }
 
     //Set up Lighting
@@ -137,17 +153,14 @@ int main()
         //Inputs
         {
             UpdateMousePosition(pWindow);
-            Camera.Update();
         }
 
         //Rendering
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
         CLightManager::UpdateShaderUniforms(&Diffuse);
-        CubeMap.Draw(Camera);
-        for (auto& pSphere : vSpheres) pSphere->Draw(Camera);
-        Crate.Draw(Camera);
-        Plane.Draw(Camera);
+        CubeMap.Draw(*Camera);
+        GameManager.Update();
 
         //Check and call events and swap the buffers
         glfwSwapBuffers(pWindow);

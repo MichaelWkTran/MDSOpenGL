@@ -1,12 +1,8 @@
 #pragma once
 #include <GLEW/glew.h>
 #include <GLFW/glfw3.h>
-#include <string>
-#include <fstream>
-#include <sstream>
-#include <iostream>
-#include <cerrno>
 #include <glm/glm.hpp>
+#include <string>
 
 class CShader
 {

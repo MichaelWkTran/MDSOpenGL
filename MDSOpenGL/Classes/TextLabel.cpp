@@ -1,4 +1,5 @@
 #include "TextLabel.h"
+#include <iostream>
 
 void CTextLabel::UpdateSize()
 {

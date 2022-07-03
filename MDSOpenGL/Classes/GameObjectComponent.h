@@ -1,20 +1,28 @@
 #pragma once
+class CGameObject;
+class CCamera;
 
 class CGameObjectComponent
 {
-	
 private:
-
-protected:
 	bool m_bStartCalled;
 
-	virtual void Start() = 0;
-	virtual void BeginUpdate() = 0;
-	virtual void Update() = 0;
-	virtual void EndUpdate() = 0;
-
 public:
+	CGameObject* m_pGameObject;
+	
+	CGameObjectComponent()
+	{
+		m_bStartCalled = false;
+		m_pGameObject = nullptr;
+	}
 
-
+	virtual void Start()
+	{
+		if (m_bStartCalled) return;
+		m_bStartCalled = true;
+	};
+	virtual void BeginUpdate() {};
+	virtual void Update() {};
+	virtual void EndUpdate() {};
+	virtual void Draw(const CCamera&) {};
 };
-

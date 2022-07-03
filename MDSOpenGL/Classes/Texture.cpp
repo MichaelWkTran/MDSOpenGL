@@ -1,4 +1,5 @@
 #include "Texture.h"
+#include "Shader.h"
 #include <iostream>
 
 #pragma region CTextureManager functions
