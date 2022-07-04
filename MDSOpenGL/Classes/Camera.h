@@ -2,9 +2,10 @@
 #include <GLEW/glew.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
-#include "GameObjectComponent.h"
+#include "UpdatedObject.h"
+#include "Transform.h"
 
-class CCamera : public CGameObjectComponent
+class CCamera : public CUpdatedObject
 {
 protected:
 	glm::uvec2 m_uv2ViewPort;
@@ -17,6 +18,8 @@ protected:
 	glm::mat4 m_mat4View, m_mat4Projection, m_mat4Camera;
 
 public:
+	CTransform m_Transform;
+
 	CCamera();
 	~CCamera() {}
 

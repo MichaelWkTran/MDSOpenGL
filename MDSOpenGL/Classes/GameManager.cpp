@@ -12,29 +12,29 @@ CGameManager::~CGameManager()
 
 void CGameManager::Clear()
 {
-	const int iGameObjectsCount = m_dequeGameObject.size();
+	const int iGameObjectsCount = m_dequeUpdatedObject.size();
 	for (int i = 0; i < iGameObjectsCount; i++)
 	{
-		delete m_dequeGameObject.front();
-		m_dequeGameObject.pop_front();
+		delete m_dequeUpdatedObject.front();
+		m_dequeUpdatedObject.pop_front();
 	}
 }
 
 void CGameManager::Update()
 {
-	for (auto& pGameObject : m_dequeGameObject) pGameObject->Start();
-	for (auto& pGameObject : m_dequeGameObject) pGameObject->BeginUpdate();
-	for (auto& pGameObject : m_dequeGameObject) pGameObject->Update();
-	for (auto& pGameObject : m_dequeGameObject) pGameObject->EndUpdate();
-	for (auto& pGameObject : m_dequeGameObject) pGameObject->Draw(*m_pCamera);
+	for (auto& pGameObject : m_dequeUpdatedObject) pGameObject->Start();
+	for (auto& pGameObject : m_dequeUpdatedObject) pGameObject->BeginUpdate();
+	for (auto& pGameObject : m_dequeUpdatedObject) pGameObject->Update();
+	for (auto& pGameObject : m_dequeUpdatedObject) pGameObject->EndUpdate();
+	for (auto& pGameObject : m_dequeUpdatedObject) pGameObject->Draw(*m_pCamera);
 
 	//Delete GameObjects
-	for (int i = 0; i < (int)m_dequeGameObject.size(); i++)
+	for (int i = 0; i < (int)m_dequeUpdatedObject.size(); i++)
 	{
-		if (!m_dequeGameObject[i]->GetDeleteGameObject()) continue;
+		if (!m_dequeUpdatedObject[i]->GetDeleteUpdatedObject()) continue;
 
-		CGameObject* pDeletedGameObject = m_dequeGameObject[i];
-		m_dequeGameObject.erase(m_dequeGameObject.begin() + i);
+		CUpdatedObject* pDeletedGameObject = m_dequeUpdatedObject[i];
+		m_dequeUpdatedObject.erase(m_dequeUpdatedObject.begin() + i);
 		delete pDeletedGameObject;
 	}
 }

@@ -5,31 +5,16 @@
     <ClCompile Include="stb.cpp" />
     <ClCompile Include="ExternVariables.cpp" />
     <ClCompile Include="GenerateMesh.cpp" />
-    <ClCompile Include="Classes\CubeSkybox.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
     <ClCompile Include="Classes\ElementBuffer.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="Classes\GameObject.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
     <ClCompile Include="Classes\LightManager.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\MeshTris.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
     <ClCompile Include="Classes\Model.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Player.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
     <ClCompile Include="Classes\Shader.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="Classes\TextLabel.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
     <ClCompile Include="Classes\Texture.cpp">
@@ -42,37 +27,40 @@
       <Filter>Classes</Filter>
     </ClCompile>
     <ClCompile Include="Classes\Camera.cpp">
-      <Filter>Classes\GameObject Components</Filter>
+      <Filter>Classes\Updated Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\CubeSkybox.cpp">
+      <Filter>Classes\Updated Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Transform.cpp">
+      <Filter>Classes\Updated Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Player.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\MeshTris.cpp">
+      <Filter>Classes\Updated Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\TextLabel.cpp">
+      <Filter>Classes\Updated Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Font.cpp">
+      <Filter>Classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GenerateMesh.h" />
     <ClInclude Include="ExternVariables.h" />
-    <ClInclude Include="Classes\CubeSkybox.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
     <ClInclude Include="Classes\ElementBuffer.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\GameObject.h">
       <Filter>Classes</Filter>
     </ClInclude>
     <ClInclude Include="Classes\LightManager.h">
       <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\MeshTris.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
     <ClInclude Include="Classes\Model.h">
       <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Player.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
     <ClInclude Include="Classes\Shader.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\TextLabel.h">
       <Filter>Classes</Filter>
     </ClInclude>
     <ClInclude Include="Classes\Texture.h">
@@ -88,13 +76,31 @@
       <Filter>Classes</Filter>
     </ClInclude>
     <ClInclude Include="Classes\Camera.h">
-      <Filter>Classes\GameObject Components</Filter>
+      <Filter>Classes\Updated Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\GameObjectComponent.h">
-      <Filter>Classes\GameObject Components</Filter>
+    <ClInclude Include="Classes\CubeSkybox.h">
+      <Filter>Classes\Updated Objects</Filter>
     </ClInclude>
     <ClInclude Include="Classes\Mesh.h">
-      <Filter>Classes\GameObject Components</Filter>
+      <Filter>Classes\Updated Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Transform.h">
+      <Filter>Classes\Updated Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Player.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\UpdatedObject.h">
+      <Filter>Classes\Updated Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\MeshTris.h">
+      <Filter>Classes\Updated Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\TextLabel.h">
+      <Filter>Classes\Updated Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Font.h">
+      <Filter>Classes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -110,8 +116,8 @@
     <Filter Include="Resources\Shaders">
       <UniqueIdentifier>{3e8ed353-3c09-4e4b-900e-57befa3e62f0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes\GameObject Components">
-      <UniqueIdentifier>{0cfb70f6-36cc-4135-b94a-8cf2c42140cf}</UniqueIdentifier>
+    <Filter Include="Classes\Updated Objects">
+      <UniqueIdentifier>{14b7da83-48e6-47c8-b517-ba15ebdbfc2a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

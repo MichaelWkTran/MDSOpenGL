@@ -1,18 +1,24 @@
 #include "CubeSkybox.h"
+#include "Mesh.h"
 #include "../GenerateMesh.h"
 
 CCubeSkybox::CCubeSkybox(CShader* _pShader, float _fSize, const char* _pTextureDirectories[6])
 {
+	CreateSkybox(_pShader, _fSize, _pTextureDirectories);
+}
+
+void CCubeSkybox::CreateSkybox(CShader* _pShader, float _fSize, const char* _pTextureDirectories[6])
+{
 	m_Mesh.m_pShader = _pShader;
-	gm::GenerateFlatCube(m_Mesh, glm::vec3(1.0f,1.0f,1.0f) * _fSize);
-	
+	gm::GenerateFlatCube(m_Mesh, glm::vec3(1.0f, 1.0f, 1.0f) * _fSize);
+
 	//Invert Faces
 	std::vector<unsigned int> vIndicies = m_Mesh.GetIndicies();
 	for (int i = 0; i < (int)vIndicies.size(); i += 3)
 	{
-		int iTemp = vIndicies[i+1];
-		vIndicies[i+1] = vIndicies[i+2];
-		vIndicies[i+2] = iTemp;
+		int iTemp = vIndicies[i + 1];
+		vIndicies[i + 1] = vIndicies[i + 2];
+		vIndicies[i + 2] = iTemp;
 	}
 	m_Mesh.SetIndicies(vIndicies);
 
@@ -21,7 +27,7 @@ CCubeSkybox::CCubeSkybox(CShader* _pShader, float _fSize, const char* _pTextureD
 	CTexture* pTexture = m_Mesh.m_vTextures.back();
 
 	pTexture->Bind();
-	
+
 	int iImageWidth, iImageHeight, iImageComponents;
 	stbi_set_flip_vertically_on_load(false);
 	for (int i = 0; i < 6; i++)

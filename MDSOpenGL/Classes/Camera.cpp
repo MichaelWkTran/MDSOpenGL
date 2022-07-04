@@ -1,5 +1,4 @@
 #include "Camera.h"
-#include "GameObject.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtx/rotate_vector.hpp>
@@ -110,8 +109,6 @@ void CCamera::SetFarPlane(const float _fFarPlane)
 
 void CCamera::Update()
 {
-	if (m_pGameObject == nullptr) return;
-
 	if (m_bUpdateProjectionMatrix)
 	{
 		if (m_bIsPerspective)
@@ -129,6 +126,6 @@ void CCamera::Update()
 		m_bUpdateProjectionMatrix = false;
 	}
 
-	m_mat4View = glm::lookAt(m_pGameObject->GetPosition(), m_pGameObject->GetPosition() + m_pGameObject->Forward(), glm::vec3(0.0f, 1.0f, 0.0f));
+	m_mat4View = glm::lookAt(m_Transform.GetPosition(), m_Transform.GetPosition() + m_Transform.Forward(), glm::vec3(0.0f, 1.0f, 0.0f));
 	m_mat4Camera = m_mat4Projection * m_mat4View;
 }

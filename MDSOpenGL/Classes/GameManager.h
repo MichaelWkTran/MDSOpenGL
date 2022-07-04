@@ -1,12 +1,12 @@
 #pragma once
-#include "GameObject.h"
-#include "Camera.h"
 #include <deque>
+#include "UpdatedObject.h"
+#include "Camera.h"
 
 class CGameManager
 {
 private:
-	std::deque<CGameObject*> m_dequeGameObject;
+	std::deque<CUpdatedObject*> m_dequeUpdatedObject;
 	
 public:
 	CCamera* m_pCamera;
@@ -24,7 +24,7 @@ public:
 template<class T>
 inline T* CGameManager::CreateObject()
 {
-	m_dequeGameObject.emplace_back(new T);
-	m_dequeGameObject.back()->m_pGameManager = this;
-	return (T*)m_dequeGameObject.back();
+	m_dequeUpdatedObject.emplace_back(new T);
+	m_dequeUpdatedObject.back()->m_pGameManager = this;
+	return (T*)m_dequeUpdatedObject.back();
 }
