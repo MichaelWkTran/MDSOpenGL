@@ -38,6 +38,7 @@ public:
 		CShader* _pShader,
 		glm::vec2 _v2Position
 	);
+	~CTextLabel() {}
 
 	const glm::mat4& GetProjectionMatrix();
 	void Draw();

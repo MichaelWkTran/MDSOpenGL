@@ -66,7 +66,7 @@ void CTransform::SetScale(const glm::vec3 _v3Scale)
 
 const glm::vec3 CTransform::Up() const
 {
-    return m_fquatRotation * glm::vec3(1.0f, 0.0f, 0.0f);
+    return m_fquatRotation * glm::vec3(0.0f, 1.0f, 0.0f);
 }
 
 const glm::vec3 CTransform::Forward() const

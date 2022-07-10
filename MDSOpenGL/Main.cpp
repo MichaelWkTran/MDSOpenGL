@@ -97,39 +97,39 @@ int main()
     CTexture* pDiffuse = CTextureManager::Insert("Resources/Textures/Planks.png", "Diffuse", 0, GL_RGBA, GL_UNSIGNED_BYTE);
     CTexture* pSpecular = CTextureManager::Insert("Resources/Textures/PlanksSpecular.png", "Specular", 1, GL_RED, GL_UNSIGNED_BYTE);
 
-//    //Create Spheres
-//    {
-//        glm::ivec3 v3iGrouping(3, 3, 3);
-//        float fSepparation = 0.4f;
-//        glm::vec3 v2Position(-fSepparation, -fSepparation, -fSepparation);
-//    
-//        for (int x = 0; x < v3iGrouping.x; x++) for (int y = 0; y < v3iGrouping.y; y++) for (int z = 0; z < v3iGrouping.z; z++)
-//        {
-//            CTransform* pSphere = GameManager.CreateObject<CTransform>();
-//            pSphere->SetPosition(glm::vec3(x, y, z) * fSepparation + v2Position);
-//    
-//            //Setup Mesh Component
-//            CMesh<>* pMesh = pSphere->AddComponent<CMesh<>>();
-//            gm::GenerateSphere(*pMesh, 0.05f, 20);
-//            pMesh->m_pShader = &Diffuse;
-//            pMesh->m_vTextures.push_back(pDiffuse);
-//            pMesh->m_vTextures.push_back(pSpecular);
-//        }
-//    }
-//
-//    CTransform* pPlane = GameManager.CreateObject<CTransform>();
-//    {
-//        pPlane->SetPosition(glm::vec3(0.0f, -0.6f, 0.0f));
-//
-//        //Setup Mesh Component
-//        {
-//            CMesh<>* pMesh = pPlane->AddComponent<CMesh<>>();
-//            gm::GeneratePlane(*pMesh, glm::vec3(5.0f, 5.0f, 5.0f));
-//            pMesh->m_pShader = &Diffuse;
-//            pMesh->m_vTextures.push_back(pDiffuse);
-//            pMesh->m_vTextures.push_back(pSpecular);
-//        }
-//    }
+    //Create Spheres
+    //{
+    //    glm::ivec3 v3iGrouping(3, 3, 3);
+    //    float fSepparation = 0.4f;
+    //    glm::vec3 v2Position(-fSepparation, -fSepparation, -fSepparation);
+    //
+    //    for (int x = 0; x < v3iGrouping.x; x++) for (int y = 0; y < v3iGrouping.y; y++) for (int z = 0; z < v3iGrouping.z; z++)
+    //    {
+    //        CTransform* pSphere = GameManager.CreateObject<CTransform>();
+    //        pSphere->SetPosition(glm::vec3(x, y, z) * fSepparation + v2Position);
+    //
+    //        //Setup Mesh Component
+    //        CMesh<>* pMesh = pSphere->AddComponent<CMesh<>>();
+    //        gm::GenerateSphere(*pMesh, 0.05f, 20);
+    //        pMesh->m_pShader = &Diffuse;
+    //        pMesh->m_vTextures.push_back(pDiffuse);
+    //        pMesh->m_vTextures.push_back(pSpecular);
+    //    }
+    //}
+    //
+    //CTransform* pPlane = GameManager.CreateObject<CTransform>();
+    //{
+    //    pPlane->SetPosition(glm::vec3(0.0f, -0.6f, 0.0f));
+    //
+    //    //Setup Mesh Component
+    //    {
+    //        CMesh<>* pMesh = pPlane->AddComponent<CMesh<>>();
+    //        gm::GeneratePlane(*pMesh, glm::vec3(5.0f, 5.0f, 5.0f));
+    //        pMesh->m_pShader = &Diffuse;
+    //        pMesh->m_vTextures.push_back(pDiffuse);
+    //        pMesh->m_vTextures.push_back(pSpecular);
+    //    }
+    //}
 
     //Set up Lighting
     {

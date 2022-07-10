@@ -34,3 +34,7 @@ void UpdateMousePosition(GLFWwindow* _pWindow);
 void MouseButtonFunction(GLFWwindow* _pWindow, int _iButton, int _iAction, int _iMods);
 void UpdateInputPressed();
 void TextInput(GLFWwindow* _pWindow, unsigned int _iCodePoint);
+
+//Physics
+extern unsigned int e_uiSubsteps;
+extern float e_fGravity;

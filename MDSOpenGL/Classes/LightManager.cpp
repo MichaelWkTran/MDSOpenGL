@@ -54,7 +54,10 @@ std::vector<stSpotLight> CLightManager::m_vSpotLight;
 		}
 
 		//Write to the temporary file
-		ofstreamFile << strBuffer << std::endl;
+		ofstreamFile << strBuffer;
+
+		//Add a line if not the end of the file
+		if (!ifstreamFile.eof()) ofstreamFile << std::endl;
 	}
 
 	ifstreamFile.close();

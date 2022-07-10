@@ -71,3 +71,7 @@ void TextInput(GLFWwindow* _pWindow, unsigned int _iCodePoint)
 	e_bCodePointFound = true;
 	e_charCodePoint = _iCodePoint;
 }
+
+//Physics
+unsigned int e_uiSubsteps = 1U;
+float e_fGravity = 9.18f;
