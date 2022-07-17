@@ -5,6 +5,7 @@
 
 //Window
 extern unsigned int e_uViewPortW, e_uViewPortH;
+extern GLFWwindow* e_pMainWindow;
 
 //Time
 extern float e_fPreviousTimestep;

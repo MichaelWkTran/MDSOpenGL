@@ -13,5 +13,5 @@ public:
 		m_fHeight = _fHeight;
 	}
 	~CCapsuleCollider() {}
-	const stCollisionPoints CollisionMethod(CCollider* _pOther);
+	virtual const stCollisionPoints CollisionMethod(CCollider* _pOther) override;
 };

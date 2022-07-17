@@ -2,15 +2,15 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include <string>
 #include "UpdatedObject.h"
-#include "Transform.h"
 #include "VertexArray.h"
 #include "VertexBuffer.h"
 #include "ElementBuffer.h"
 #include "Texture.h"
 #include "Shader.h"
 #include "Camera.h"
+
+class CTransform;
 
 struct stVertex
 {
@@ -57,12 +57,13 @@ public:
 	const std::vector<unsigned int> GetIndicies() const;
 	void SetIndicies(const std::vector<unsigned int> _vIndicies);
 
-	void Draw(const CCamera& _Camera);
+	virtual void Draw(const CCamera& _Camera) override;
 };
 
 template<class T>
 inline CMesh<T>::CMesh()
 {
+	m_pTransform = nullptr;
 	m_pShader = nullptr;
 	m_bUpdateVertexArray = false;
 }

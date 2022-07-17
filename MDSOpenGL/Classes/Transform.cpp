@@ -54,6 +54,12 @@ void CTransform::SetRotationEuler(const glm::vec3 _v3Rotation, bool _InDegrees/*
     m_bUpdateTransform = true;
 }
 
+void CTransform::LookAt(const glm::vec3 _v3Target)
+{
+    m_fquatRotation = glm::quatLookAt(_v3Target - m_v3Position, glm::vec3(0.0f, 1.0f, 0.0f));
+    m_bUpdateTransform = true;
+}
+
 const glm::vec3 CTransform::GetScale() const
 {
     return m_v3Scale;
@@ -71,7 +77,7 @@ const glm::vec3 CTransform::Up() const
 
 const glm::vec3 CTransform::Forward() const
 {
-    return m_fquatRotation * glm::vec3(0.0f, 0.0f, 1.0f);
+    return m_fquatRotation * glm::vec3(0.0f, 0.0f, -1.0f);
 }
 
 const glm::vec3 CTransform::Right() const

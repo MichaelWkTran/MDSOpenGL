@@ -18,4 +18,3 @@ private:
 	std::vector<unsigned char> m_vData;
 	json m_JSON;
 };
-

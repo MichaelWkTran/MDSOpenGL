@@ -1,5 +1,4 @@
 #include "CubeSkybox.h"
-#include "Mesh.h"
 #include "../GenerateMesh.h"
 
 CCubeSkybox::CCubeSkybox(CShader* _pShader, float _fSize, const char* _pTextureDirectories[6])

@@ -2,6 +2,7 @@
 
 //Window
 unsigned int e_uViewPortW = 800, e_uViewPortH = 800;
+GLFWwindow* e_pMainWindow = nullptr;
 
 //Time
 float e_fPreviousTimestep = 0.0f;
@@ -74,4 +75,4 @@ void TextInput(GLFWwindow* _pWindow, unsigned int _iCodePoint)
 
 //Physics
 unsigned int e_uiSubsteps = 1U;
-float e_fGravity = 9.18f;
+float e_fGravity = 9.18f * 1500.0f;

@@ -7,7 +7,7 @@ class CTransform;
 //https://www.youtube.com/watch?v=lS_qeBy3aQI
 class CRigidBody : public CUpdatedObject
 {
-private:
+protected:
 	glm::vec3 m_v3PositionOld;
 	CTransform* m_pTransform;
 
@@ -18,11 +18,10 @@ public:
 	float m_fLinearDrag;
 	float m_AngularDrag;
 	glm::vec3 m_v3Velocity;
-	glm::vec3 m_v3Force;
+	glm::vec3 m_v3Acceleration;
 
 	CRigidBody();
 
-	void SetTransform(CTransform& _Transform);
-	void BeginUpdate();
-	void Update();
+	void ConstructComponent(CTransform& _Transform);
+	virtual void Update() override;
 };

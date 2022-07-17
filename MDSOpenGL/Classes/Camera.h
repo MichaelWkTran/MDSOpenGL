@@ -33,5 +33,5 @@ public:
 	const float GetNearPlane() const; void SetNearPlane(const float _fNearPlane);
 	const float GetFarPlane() const; void SetFarPlane(const float _fFarPlane);
 
-	void Update();
+	virtual void Update() override;
 };

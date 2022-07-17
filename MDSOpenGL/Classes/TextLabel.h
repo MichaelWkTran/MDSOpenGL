@@ -31,15 +31,9 @@ public:
 	glm::vec3 m_v3Colour;
 	CShader* m_pShader;
 	
-	CTextLabel
-	(
-		std::string _strText,
-		CFont* _pFont,
-		CShader* _pShader,
-		glm::vec2 _v2Position
-	);
+	CTextLabel(std::string _strText, CFont* _pFont, CShader* _pShader, glm::vec2 _v2Position);
 	~CTextLabel() {}
 
 	const glm::mat4& GetProjectionMatrix();
-	void Draw();
+	virtual void Draw(const CCamera& _Camera) override;
 };

@@ -151,22 +151,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CapsuleCollider.cpp" />
     <ClCompile Include="Classes\Camera.cpp" />
     <ClCompile Include="Classes\CapsuleCollider.cpp" />
     <ClCompile Include="Classes\Collider.cpp" />
     <ClCompile Include="Classes\CubeSkybox.cpp" />
     <ClCompile Include="Classes\ElementBuffer.cpp" />
     <ClCompile Include="Classes\Font.cpp" />
+    <ClCompile Include="Classes\FreePlayerCamera.cpp" />
     <ClCompile Include="Classes\GameManager.cpp" />
     <ClCompile Include="Classes\PlaneCollider.cpp" />
     <ClCompile Include="Classes\RigidBody.cpp" />
+    <ClCompile Include="Classes\RigidbodySphere.cpp" />
     <ClCompile Include="Classes\SphereCollider.cpp" />
     <ClCompile Include="Classes\Transform.cpp" />
     <ClCompile Include="Classes\LightManager.cpp" />
     <ClCompile Include="Classes\MeshTris.cpp" />
     <ClCompile Include="Classes\Model.cpp" />
-    <ClCompile Include="Classes\Player.cpp" />
     <ClCompile Include="Classes\Shader.cpp" />
     <ClCompile Include="Classes\TextLabel.cpp" />
     <ClCompile Include="Classes\Texture.cpp" />
@@ -177,16 +177,17 @@
     <ClCompile Include="stb.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CapsuleCollider.h" />
     <ClInclude Include="Classes\Camera.h" />
     <ClInclude Include="Classes\CapsuleCollider.h" />
     <ClInclude Include="Classes\Collider.h" />
     <ClInclude Include="Classes\CubeSkybox.h" />
     <ClInclude Include="Classes\ElementBuffer.h" />
     <ClInclude Include="Classes\Font.h" />
+    <ClInclude Include="Classes\FreePlayerCamera.h" />
     <ClInclude Include="Classes\GameManager.h" />
     <ClInclude Include="Classes\PlaneCollider.h" />
     <ClInclude Include="Classes\RigidBody.h" />
+    <ClInclude Include="Classes\RigidbodySphere.h" />
     <ClInclude Include="Classes\SphereCollider.h" />
     <ClInclude Include="Classes\Transform.h" />
     <ClInclude Include="Classes\UpdatedObject.h" />
@@ -194,7 +195,6 @@
     <ClInclude Include="Classes\Mesh.h" />
     <ClInclude Include="Classes\MeshTris.h" />
     <ClInclude Include="Classes\Model.h" />
-    <ClInclude Include="Classes\Player.h" />
     <ClInclude Include="Classes\Shader.h" />
     <ClInclude Include="Classes\TextLabel.h" />
     <ClInclude Include="Classes\Texture.h" />

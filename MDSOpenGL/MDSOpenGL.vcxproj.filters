@@ -35,9 +35,6 @@
     <ClCompile Include="Classes\Transform.cpp">
       <Filter>Classes\Updated Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Player.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
     <ClCompile Include="Classes\MeshTris.cpp">
       <Filter>Classes\Updated Objects</Filter>
     </ClCompile>
@@ -53,13 +50,20 @@
     <ClCompile Include="Classes\SphereCollider.cpp">
       <Filter>Classes\Updated Objects\Colliders</Filter>
     </ClCompile>
-    <ClCompile Include="CapsuleCollider.cpp" />
     <ClCompile Include="Classes\CapsuleCollider.cpp">
       <Filter>Classes\Updated Objects\Colliders</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\RigidBody.cpp" />
-    <ClCompile Include="Classes\PlaneCollider.cpp">
+    <ClCompile Include="Classes\FreePlayerCamera.cpp">
       <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\RigidbodySphere.cpp">
+      <Filter>Classes\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\PlaneCollider.cpp">
+      <Filter>Classes\Updated Objects\Colliders</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\RigidBody.cpp">
+      <Filter>Classes\Updated Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -101,9 +105,6 @@
     <ClInclude Include="Classes\Transform.h">
       <Filter>Classes\Updated Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Player.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
     <ClInclude Include="Classes\UpdatedObject.h">
       <Filter>Classes\Updated Objects</Filter>
     </ClInclude>
@@ -122,13 +123,20 @@
     <ClInclude Include="Classes\SphereCollider.h">
       <Filter>Classes\Updated Objects\Colliders</Filter>
     </ClInclude>
-    <ClInclude Include="CapsuleCollider.h" />
     <ClInclude Include="Classes\CapsuleCollider.h">
       <Filter>Classes\Updated Objects\Colliders</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\RigidBody.h" />
-    <ClInclude Include="Classes\PlaneCollider.h">
+    <ClInclude Include="Classes\FreePlayerCamera.h">
       <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\RigidbodySphere.h">
+      <Filter>Classes\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\PlaneCollider.h">
+      <Filter>Classes\Updated Objects\Colliders</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\RigidBody.h">
+      <Filter>Classes\Updated Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +157,9 @@
     </Filter>
     <Filter Include="Classes\Updated Objects\Colliders">
       <UniqueIdentifier>{08b1c93b-3765-4237-a5dc-717a390bf8af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\GameObjects">
+      <UniqueIdentifier>{a5203cb1-8606-4433-88e8-63cb098e3a2a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

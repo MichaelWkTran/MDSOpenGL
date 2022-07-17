@@ -25,11 +25,12 @@ public:
 	const glm::vec3 GetPosition() const; void SetPosition(const glm::vec3 _v3Position);
 	const glm::fquat GetRotation() const; void SetRotation(const glm::fquat _fquatRotation);
 	const glm::vec3 GetRotationEuler(bool _InDegrees = true) const; void SetRotationEuler(const glm::vec3 _v3Rotation, bool _InDegrees = true);
+	void LookAt(const glm::vec3 _v3Target);
 	const glm::vec3 GetScale() const; void SetScale(const glm::vec3 _v3Scale);
 
 	const glm::vec3 Up() const;
 	const glm::vec3 Forward() const;
 	const glm::vec3 Right() const;
 
-	void Draw(const CCamera& _Camera);
+	virtual void Draw(const CCamera& _Camera) override;
 };

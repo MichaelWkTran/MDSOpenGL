@@ -3,7 +3,6 @@
 #include <GLFW/glfw3.h>
 #include <stb/stb_image.h>
 #include <map>
-#include <vector>
 #include <string>
 
 class CShader;

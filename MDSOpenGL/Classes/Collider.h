@@ -4,6 +4,7 @@
 #include <set>
 
 class CTransform;
+class CRigidBody;
 
 //https://www.youtube.com/watch?v=-_IspRG548E
 struct stCollisionPoints
@@ -16,26 +17,34 @@ struct stCollisionPoints
 class CCollider
 {
 public:
+	static std::set<CCollider*> m_setCollidersInWorld;
+
 	std::set<CCollider*> m_CurrentlyCollidingWith;
 	bool m_bTrigger;
-	bool m_bStatic;
 	CTransform* m_pTransform;
+	CRigidBody* m_pRigidbody;
 
 	CCollider()
 	{
+		m_setCollidersInWorld.insert(this);
 		m_bTrigger = false;
-		m_bStatic = false;
 		m_pTransform = nullptr;
+		m_pRigidbody = nullptr;
 	}
-	~CCollider() {}
+	~CCollider()
+	{
+		m_setCollidersInWorld.erase(this);
+	}
+
+	void ConstructComponent(CTransform* _pTransform, CRigidBody* _pRigidbody);
 	virtual const stCollisionPoints CollisionMethod(CCollider* _pOther) = 0;
-	void CheckCollision(std::set<CCollider*> _CollidersInWorld);
+	void CheckCollision();
 };
 
 namespace CollisionMethodAlgorithms
 {
 	//https://github.com/IainWinter/IwEngine/blob/tutorial/IwEngine/src/physics/Collision/algo/ManifoldFactory.cpp
 	const stCollisionPoints SphereSphereCollision(CCollider* _pA, CCollider* _pB);
-	const stCollisionPoints SpherePlaneCollision(CCollider* _pA, CCollider* _pB);
-	const stCollisionPoints SphereCapsuleCollision(CCollider* _pA, CCollider* _pB);
+	//const stCollisionPoints SpherePlaneCollision(CCollider* _pA, CCollider* _pB);
+	//const stCollisionPoints SphereCapsuleCollision(CCollider* _pA, CCollider* _pB);
 }

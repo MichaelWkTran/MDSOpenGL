@@ -6,10 +6,7 @@ class CSphereCollider : public CCollider
 public:
 	float m_fRadius;
 
-	CSphereCollider(float _fRadius)
-	{
-		m_fRadius = _fRadius;
-	}
+	CSphereCollider() { m_fRadius = 0.5f; }
 	~CSphereCollider() {};
-	const stCollisionPoints CollisionMethod(CCollider* _pOther);
+	virtual const stCollisionPoints CollisionMethod(CCollider* _pOther) override;
 };

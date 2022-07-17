@@ -69,7 +69,7 @@ const glm::mat4& CTextLabel::GetProjectionMatrix()
 	return m_mat4Projection;
 }
 
-void CTextLabel::Draw()
+void CTextLabel::Draw(const CCamera& _Camera)
 {
 	if (m_pShader == nullptr) return;
 
