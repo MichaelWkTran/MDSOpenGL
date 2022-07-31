@@ -2,6 +2,7 @@
 #include "../ExternVariables.h"
 #include <iostream>
 #include "Font.h"
+#include "Texture.h"
 
 void CTextLabel::UpdateSize()
 {

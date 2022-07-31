@@ -1,21 +1,22 @@
-#include "GameManager.h"
+#include "Transform.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include "Transform.h"
-#include "UpdatedObject.h"
 
 CTransform::CTransform()
 {
-    m_bUpdateTransform = true;
     m_v3Position = glm::vec3(0.0f, 0.0f, 0.0f);
     m_fquatRotation = glm::quat(1.0f, 0.0f, 0.0f, 0.0f);
     m_v3Scale = glm::vec3(1.0f, 1.0f, 1.0f);
-    m_mat4Model = glm::mat4x4(1);
-
-    m_bDeleteGameObject = false;
+    UpdateModelMatrix();
 }
 
-#pragma region  Get Set Methods
+void CTransform::UpdateModelMatrix()
+{
+    m_mat4Model = glm::scale(glm::mat4x4(1), m_v3Scale);
+    m_mat4Model *= glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), Forward(), glm::vec3(0.0f, 1.0f, 0.0f));
+    m_mat4Model = glm::translate(m_mat4Model, m_v3Position);
+}
+
 const glm::mat4x4 CTransform::GetModel() const
 {
     return m_mat4Model;
@@ -28,7 +29,7 @@ const glm::vec3 CTransform::GetPosition() const
 void CTransform::SetPosition(const glm::vec3 _v3Position)
 {
     m_v3Position = _v3Position;
-    m_bUpdateTransform = true;
+    UpdateModelMatrix();
 }
 
 const glm::quat CTransform::GetRotation() const
@@ -38,26 +39,26 @@ const glm::quat CTransform::GetRotation() const
 void CTransform::SetRotation(const glm::fquat _fquatRotation)
 {
     m_fquatRotation = _fquatRotation;
-    m_bUpdateTransform = true;
+    UpdateModelMatrix();
 }
 
-const glm::vec3 CTransform::GetRotationEuler(bool _InDegrees/* = true*/) const
+const glm::vec3 CTransform::GetRotationEuler(bool _bInDegrees/* = true*/) const
 {
     glm::vec3 v3Output = glm::eulerAngles(m_fquatRotation);
-    if (_InDegrees) v3Output = glm::degrees(v3Output);
+    if (_bInDegrees) v3Output = glm::degrees(v3Output);
 
     return v3Output;
 }
-void CTransform::SetRotationEuler(const glm::vec3 _v3Rotation, bool _InDegrees/* = true*/)
+void CTransform::SetRotationEuler(const glm::vec3 _v3Rotation, bool _bInDegrees/* = true*/)
 {
-    m_fquatRotation = _InDegrees ? glm::quat(glm::radians(_v3Rotation)) : glm::quat(_v3Rotation);
-    m_bUpdateTransform = true;
+    m_fquatRotation = _bInDegrees ? glm::quat(glm::radians(_v3Rotation)) : glm::quat(_v3Rotation);
+    UpdateModelMatrix();
 }
 
 void CTransform::LookAt(const glm::vec3 _v3Target)
 {
     m_fquatRotation = glm::quatLookAt(_v3Target - m_v3Position, glm::vec3(0.0f, 1.0f, 0.0f));
-    m_bUpdateTransform = true;
+    UpdateModelMatrix();
 }
 
 const glm::vec3 CTransform::GetScale() const
@@ -67,7 +68,7 @@ const glm::vec3 CTransform::GetScale() const
 void CTransform::SetScale(const glm::vec3 _v3Scale)
 {
     m_v3Scale = _v3Scale;
-    m_bUpdateTransform = true;
+    UpdateModelMatrix();
 }
 
 const glm::vec3 CTransform::Up() const
@@ -83,18 +84,4 @@ const glm::vec3 CTransform::Forward() const
 const glm::vec3 CTransform::Right() const
 {
     return m_fquatRotation * glm::vec3(1.0f, 0.0f, 0.0f);
-}
-
-#pragma endregion
-
-void CTransform::Draw(const CCamera& _Camera)
-{
-    if (m_bUpdateTransform)
-    {
-        m_mat4Model = glm::mat4x4(1);
-        m_mat4Model = glm::scale(m_mat4Model, m_v3Scale);
-        m_mat4Model *= glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), Forward(), glm::vec3(0.0f, 1.0f, 0.0f));
-        m_mat4Model = glm::translate(m_mat4Model, m_v3Position);
-        m_bUpdateTransform = false;
-    }
 }

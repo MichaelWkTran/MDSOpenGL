@@ -1,5 +1,7 @@
 #include "Texture.h"
 #include "Shader.h"
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb/stb_image.h>
 #include <iostream>
 
 #pragma region CTextureManager functions

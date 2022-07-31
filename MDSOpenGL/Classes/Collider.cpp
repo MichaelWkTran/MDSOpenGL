@@ -8,16 +8,10 @@
 
 std::set<CCollider*> CCollider::m_setCollidersInWorld;
 
-void CCollider::ConstructComponent(CTransform* _pTransform, CRigidBody* _pRigidbody)
-{
-	m_pTransform = _pTransform;
-	m_pRigidbody = _pRigidbody;
-}
-
 void CCollider::CheckCollision()
 {
-	//Clear m_CurrentlyCollidingWith
-	m_CurrentlyCollidingWith.clear();
+	//Clear m_mapCurrentlyCollidingWith
+	m_mapCurrentlyCollidingWith.clear();
 
 	//Loop through all colliders in the game and check collisions
 	for (auto& pCollider : m_setCollidersInWorld)
@@ -26,52 +20,48 @@ void CCollider::CheckCollision()
 		if (pCollider == this) continue;
 
 		//Check whether the colliding with set already contains the collider
-		if (m_CurrentlyCollidingWith.find(pCollider) != m_CurrentlyCollidingWith.end()) continue;
+		if (m_mapCurrentlyCollidingWith.find(pCollider) != m_mapCurrentlyCollidingWith.end()) continue;
 
 		//Get collision data
 		stCollisionPoints CollisionPoints = CollisionMethod(pCollider);
 
 		//Check whether the colliders are colliding
-		if (!CollisionPoints.bHaveCollision)
-		{
-			m_CurrentlyCollidingWith.erase(pCollider);
-			continue;
-		}
+		if (!CollisionPoints.bHaveCollision) continue;
 
 		//Add each others colliders to their sets
-		m_CurrentlyCollidingWith.insert(pCollider);
-		pCollider->m_CurrentlyCollidingWith.insert(this);
-
-		//Skip collider separation if it is a trigger
-		if (m_bTrigger) continue;
-
-		//Collider separation
-		glm::vec3 v3SeparationNormal = glm::normalize(CollisionPoints.A - CollisionPoints.B);
-		float fSepparationDistance = glm::distance(CollisionPoints.A, CollisionPoints.B);
-
-		//If both colliders have a rigidbody
-		bool bDynamic = false;
-		if (m_pRigidbody)
-			if (!m_pRigidbody->m_bIsKinematic) bDynamic = true;
-
-		bool bOtherDynamic = false;
-		if (pCollider->m_pRigidbody)
-			if (!pCollider->m_pRigidbody->m_bIsKinematic) bOtherDynamic = true;
-
-		///////////////
-		if (bDynamic && bOtherDynamic)
-		{
-			m_pRigidbody->m_v3Velocity += v3SeparationNormal * fSepparationDistance * 0.5f;
-			pCollider->m_pRigidbody->m_v3Velocity += -v3SeparationNormal * fSepparationDistance * 0.5f;
-		}
-		else if (bDynamic && !bOtherDynamic)
-		{
-			m_pRigidbody->m_v3Velocity += v3SeparationNormal * fSepparationDistance;
-		}
-		else if (!bDynamic && bOtherDynamic)
-		{
-			m_pRigidbody->m_v3Velocity += -v3SeparationNormal * fSepparationDistance;
-		}
+		m_mapCurrentlyCollidingWith.insert(std::make_pair<>(pCollider, CollisionPoints));
+		pCollider->m_mapCurrentlyCollidingWith.insert(std::make_pair<>(pCollider, CollisionPoints.Swap()));
+		
+		////Skip collider separation if it is a trigger
+		//if (m_bTrigger) continue;
+		//
+		////Collider separation
+		//glm::vec3 v3SeparationNormal = glm::normalize(CollisionPoints.A - CollisionPoints.B);
+		//float fSepparationDistance = glm::distance(CollisionPoints.A, CollisionPoints.B);
+		//
+		////If both colliders have a rigidbody
+		//bool bDynamic = false;
+		//if (m_pRigidbody)
+		//	if (!m_pRigidbody->m_bIsKinematic) bDynamic = true;
+		//
+		//bool bOtherDynamic = false;
+		//if (pCollider->m_pRigidbody)
+		//	if (!pCollider->m_pRigidbody->m_bIsKinematic) bOtherDynamic = true;
+		//
+		/////////////////
+		//if (bDynamic && bOtherDynamic)
+		//{
+		//	m_pRigidbody->m_v3Velocity += v3SeparationNormal * fSepparationDistance * 0.5f;
+		//	pCollider->m_pRigidbody->m_v3Velocity += -v3SeparationNormal * fSepparationDistance * 0.5f;
+		//}
+		//else if (bDynamic && !bOtherDynamic)
+		//{
+		//	m_pRigidbody->m_v3Velocity += v3SeparationNormal * fSepparationDistance;
+		//}
+		//else if (!bDynamic && bOtherDynamic)
+		//{
+		//	m_pRigidbody->m_v3Velocity += -v3SeparationNormal * fSepparationDistance;
+		//}
 	}
 
 	//Temporary constraint for spheres collide with ground

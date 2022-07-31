@@ -4,6 +4,7 @@
 #include "Classes/LightManager.h"
 #include "Classes/CubeSkybox.h"
 #include "ExternVariables.h"
+#include "Classes/Texture.h"
 #include "GenerateMesh.h"
 #include "Classes/UpdatedObject.h"
 #include "Classes/SphereCollider.h"
